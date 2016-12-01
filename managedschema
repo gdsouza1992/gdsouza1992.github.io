@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Solr managed schema - automatically generated - DO NOT EDIT -->
+<schema name="example-data-driven-schema" version="1.6">
+  <uniqueKey>id</uniqueKey>
+  <fieldType name="ancestor_path" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="binary" class="solr.BinaryField"/>
+  <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+  <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+  <fieldType name="currency" class="solr.CurrencyField" currencyConfig="currency.xml" defaultCurrency="USD" precisionStep="8"/>
+  <fieldType name="date" class="solr.TrieDateField" positionIncrementGap="0" docValues="true" precisionStep="0"/>
+  <fieldType name="dates" class="solr.TrieDateField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="0"/>
+  <fieldType name="descendent_path" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="double" class="solr.TrieDoubleField" positionIncrementGap="0" docValues="true" precisionStep="0"/>
+  <fieldType name="doubles" class="solr.TrieDoubleField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="0"/>
+  <fieldType name="external" class="solr.ExternalFileField" keyField="id" valType="pfloat" defVal="0"/>
+  <fieldType name="float" class="solr.TrieFloatField" positionIncrementGap="0" docValues="true" precisionStep="0"/>
+  <fieldType name="floats" class="solr.TrieFloatField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="0"/>
+  <fieldType name="ignored" class="solr.StrField" indexed="false" stored="false" docValues="false" multiValued="true"/>
+  <fieldType name="int" class="solr.TrieIntField" positionIncrementGap="0" docValues="true" precisionStep="0"/>
+  <fieldType name="ints" class="solr.TrieIntField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="0"/>
+  <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+  <fieldType name="location_rpt" class="solr.SpatialRecursivePrefixTreeFieldType" geo="true" maxDistErr="0.001" distErrPct="0.025" distanceUnits="kilometers"/>
+  <fieldType name="long" class="solr.TrieLongField" positionIncrementGap="0" docValues="true" precisionStep="0"/>
+  <fieldType name="longs" class="solr.TrieLongField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="0"/>
+  <fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="phonetic_en" class="solr.TextField" indexed="true" stored="false">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.DoubleMetaphoneFilterFactory" inject="false"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="point" class="solr.PointType" subFieldSuffix="_d" dimension="2"/>
+  <fieldType name="random" class="solr.RandomSortField" indexed="true"/>
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true"/>
+  <fieldType name="strings" class="solr.StrField" sortMissingLast="true" docValues="true" multiValued="true"/>
+  <fieldType name="tdate" class="solr.TrieDateField" positionIncrementGap="0" docValues="true" precisionStep="6"/>
+  <fieldType name="tdates" class="solr.TrieDateField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="6"/>
+  <fieldType name="tdouble" class="solr.TrieDoubleField" positionIncrementGap="0" docValues="true" precisionStep="8"/>
+  <fieldType name="tdoubles" class="solr.TrieDoubleField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="8"/>
+  <fieldType name="text_ar" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ar.txt" ignoreCase="true"/>
+      <filter class="solr.ArabicNormalizationFilterFactory"/>
+      <filter class="solr.ArabicStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_bg" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_bg.txt" ignoreCase="true"/>
+      <filter class="solr.BulgarianStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ca" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_ca.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ca.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Catalan"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.CJKWidthFilterFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.CJKBigramFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_cz" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_cz.txt" ignoreCase="true"/>
+      <filter class="solr.CzechStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_da" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_da.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Danish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_de" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_de.txt" ignoreCase="true"/>
+      <filter class="solr.GermanNormalizationFilterFactory"/>
+      <filter class="solr.GermanLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_el" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.GreekLowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_el.txt" ignoreCase="false"/>
+      <filter class="solr.GreekStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_en" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.EnglishPossessiveFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_en_splitting" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="1"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="0" generateNumberParts="1" splitOnCaseChange="1" generateWordParts="1" catenateAll="0" catenateWords="0"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.PorterStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_en_splitting_tight" class="solr.TextField" autoGeneratePhraseQueries="true" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.SynonymFilterFactory" expand="false" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_en.txt" ignoreCase="true"/>
+      <filter class="solr.WordDelimiterFilterFactory" catenateNumbers="1" generateNumberParts="0" generateWordParts="0" catenateAll="0" catenateWords="1"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.KeywordMarkerFilterFactory" protected="protwords.txt"/>
+      <filter class="solr.EnglishMinimalStemFilterFactory"/>
+      <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_es" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_es.txt" ignoreCase="true"/>
+      <filter class="solr.SpanishLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_eu" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_eu.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Basque"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_fa" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <charFilter class="solr.PersianCharFilterFactory"/>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.ArabicNormalizationFilterFactory"/>
+      <filter class="solr.PersianNormalizationFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_fa.txt" ignoreCase="true"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_fi" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_fi.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Finnish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_fr" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_fr.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_fr.txt" ignoreCase="true"/>
+      <filter class="solr.FrenchLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ga" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_ga.txt" ignoreCase="true"/>
+      <filter class="solr.StopFilterFactory" words="lang/hyphenations_ga.txt" ignoreCase="true"/>
+      <filter class="solr.IrishLowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ga.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Irish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_general_rev" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.ReversedWildcardFilterFactory" maxPosQuestion="2" maxFractionAsterisk="0.33" maxPosAsterisk="3" withOriginal="true"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.SynonymFilterFactory" expand="true" ignoreCase="true" synonyms="synonyms.txt"/>
+      <filter class="solr.StopFilterFactory" words="stopwords.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_gl" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_gl.txt" ignoreCase="true"/>
+      <filter class="solr.GalicianStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_hi" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.IndicNormalizationFilterFactory"/>
+      <filter class="solr.HindiNormalizationFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_hi.txt" ignoreCase="true"/>
+      <filter class="solr.HindiStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_hu" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_hu.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Hungarian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_hy" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_hy.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Armenian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_id" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_id.txt" ignoreCase="true"/>
+      <filter class="solr.IndonesianStemFilterFactory" stemDerivational="true"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_it" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.ElisionFilterFactory" articles="lang/contractions_it.txt" ignoreCase="true"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_it.txt" ignoreCase="true"/>
+      <filter class="solr.ItalianLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ja" class="solr.TextField" autoGeneratePhraseQueries="false" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.JapaneseTokenizerFactory" mode="search"/>
+      <filter class="solr.JapaneseBaseFormFilterFactory"/>
+      <filter class="solr.JapanesePartOfSpeechStopFilterFactory" tags="lang/stoptags_ja.txt"/>
+      <filter class="solr.CJKWidthFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ja.txt" ignoreCase="true"/>
+      <filter class="solr.JapaneseKatakanaStemFilterFactory" minimumLength="4"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_lv" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_lv.txt" ignoreCase="true"/>
+      <filter class="solr.LatvianStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_nl" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_nl.txt" ignoreCase="true"/>
+      <filter class="solr.StemmerOverrideFilterFactory" dictionary="lang/stemdict_nl.txt" ignoreCase="false"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Dutch"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_no" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_no.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Norwegian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_pt" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_pt.txt" ignoreCase="true"/>
+      <filter class="solr.PortugueseLightStemFilterFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ro" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_ro.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Romanian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ru" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_ru.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Russian"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_sv" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" format="snowball" words="lang/stopwords_sv.txt" ignoreCase="true"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Swedish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_th" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.ThaiTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_th.txt" ignoreCase="true"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_tr" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.StandardTokenizerFactory"/>
+      <filter class="solr.TurkishLowerCaseFilterFactory"/>
+      <filter class="solr.StopFilterFactory" words="lang/stopwords_tr.txt" ignoreCase="false"/>
+      <filter class="solr.SnowballPorterFilterFactory" language="Turkish"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
+    <analyzer>
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    </analyzer>
+  </fieldType>
+  <fieldType name="tfloat" class="solr.TrieFloatField" positionIncrementGap="0" docValues="true" precisionStep="8"/>
+  <fieldType name="tfloats" class="solr.TrieFloatField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="8"/>
+  <fieldType name="tint" class="solr.TrieIntField" positionIncrementGap="0" docValues="true" precisionStep="8"/>
+  <fieldType name="tints" class="solr.TrieIntField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="8"/>
+  <fieldType name="tlong" class="solr.TrieLongField" positionIncrementGap="0" docValues="true" precisionStep="8"/>
+  <fieldType name="tlongs" class="solr.TrieLongField" positionIncrementGap="0" docValues="true" multiValued="true" precisionStep="8"/>
+  <field name="_root_" type="string" docValues="false" indexed="true" stored="false"/>
+  <field name="_text_" type="text_en_splitting" multiValued="true" indexed="true" stored="false"/>
+  <field name="_version_" type="long" indexed="true" stored="false"/>
+  <field name="ad_sensitivity" type="strings"/>
+  <field name="ad_sponsor" type="strings"/>
+  <field name="adx_url" type="strings"/>
+  <field name="adxpage" type="strings"/>
+  <field name="al_android_app_name" type="strings"/>
+  <field name="al_android_package" type="strings"/>
+  <field name="al_android_url" type="strings"/>
+  <field name="al_ipad_app_name" type="strings"/>
+  <field name="al_ipad_app_store_id" type="tlongs"/>
+  <field name="al_ipad_url" type="strings"/>
+  <field name="al_iphone_app_name" type="strings"/>
+  <field name="al_iphone_app_store_id" type="tlongs"/>
+  <field name="al_iphone_url" type="strings"/>
+  <field name="app_base_domain" type="strings"/>
+  <field name="app_css_domain" type="strings"/>
+  <field name="app_html_domain" type="strings"/>
+  <field name="app_html_secure_domain" type="strings"/>
+  <field name="app_images_domain" type="strings"/>
+  <field name="app_images_secure_domain" type="strings"/>
+  <field name="app_initial_playlist" type="tlongs"/>
+  <field name="app_js_domain" type="strings"/>
+  <field name="app_js_secure_domain" type="strings"/>
+  <field name="app_legacy_css_domain" type="strings"/>
+  <field name="app_legacy_js_domain" type="strings"/>
+  <field name="apple_itunes_app" type="strings"/>
+  <field name="apple_mobile_web_app_capable" type="strings"/>
+  <field name="apple_mobile_web_app_title" type="strings"/>
+  <field name="application_name" type="strings"/>
+  <field name="applicationname" type="strings"/>
+  <field name="article_author" type="strings"/>
+  <field name="article_collection" type="strings"/>
+  <field name="article_modified" type="tdates"/>
+  <field name="article_modified_time" type="tdates"/>
+  <field name="article_published" type="tdates"/>
+  <field name="article_published_time" type="tlongs"/>
+  <field name="article_section" type="strings"/>
+  <field name="article_section_taxonomy_id" type="strings"/>
+  <field name="article_section_url" type="strings"/>
+  <field name="article_tag" type="strings"/>
+  <field name="article_template_version" type="tlongs"/>
+  <field name="article_top_level_section" type="strings"/>
+  <field name="articleid" type="tlongs"/>
+  <field name="asset_id" type="tlongs"/>
+  <field name="author" type="strings"/>
+  <field name="bbcsearch_noindex" type="strings"/>
+  <field name="blogpostid" type="tlongs"/>
+  <field name="bn" type="strings"/>
+  <field name="byl" type="strings"/>
+  <field name="cache_control" type="strings"/>
+  <field name="cd12" type="strings"/>
+  <field name="cd4" type="strings"/>
+  <field name="cd5" type="strings"/>
+  <field name="cg" type="strings"/>
+  <field name="channels" type="strings"/>
+  <field name="charset" type="strings"/>
+  <field name="cherry_api_domain" type="strings"/>
+  <field name="cleartype" type="strings"/>
+  <field name="clmst" type="strings"/>
+  <field name="cn" type="strings"/>
+  <field name="col" type="strings"/>
+  <field name="collection_author" type="strings"/>
+  <field name="collection_language" type="strings"/>
+  <field name="collection_parentsection" type="strings"/>
+  <field name="collection_section" type="strings"/>
+  <field name="communityassetlabels" type="strings"/>
+  <field name="communityassettaxonomy" type="strings"/>
+  <field name="communityasseturl" type="strings"/>
+  <field name="communitymd5" type="strings"/>
+  <field name="content_encoding" type="strings"/>
+  <field name="content_language" type="strings"/>
+  <field name="content_type" type="strings"/>
+  <field name="content_type_hint" type="strings"/>
+  <field name="contentflavor" type="strings"/>
+  <field name="cps_asset_type" type="strings"/>
+  <field name="cps_audience" type="strings"/>
+  <field name="cps_changequeueid" type="tlongs"/>
+  <field name="cps_id" type="tlongs"/>
+  <field name="cps_platform" type="strings"/>
+  <field name="cps_section_path" type="strings"/>
+  <field name="cps_site_name" type="strings"/>
+  <field name="cre" type="strings"/>
+  <field name="ct" type="strings"/>
+  <field name="dat" type="strings"/>
+  <field name="data_env" type="strings"/>
+  <field name="dc_title" type="strings"/>
+  <field name="dcterms_created" type="tdates"/>
+  <field name="dcterms_modified" type="tdates"/>
+  <field name="des" type="strings"/>
+  <field name="description" type="strings"/>
+  <field name="dfp_ad_path" type="strings"/>
+  <field name="dfp_ad_unit_path" type="strings"/>
+  <field name="dfp_amazon_enabled" type="booleans"/>
+  <field name="dfp_base_ad_unit_path" type="strings"/>
+  <field name="discussion_id" type="tlongs"/>
+  <field name="display_name" type="strings"/>
+  <field name="display_text" type="strings"/>
+  <field name="displaydate" type="strings"/>
+  <field name="distribution" type="strings"/>
+  <field name="dsk" type="strings"/>
+  <field name="edt" type="strings"/>
+  <field name="emailthishash" type="strings"/>
+  <field name="expires" type="strings"/>
+  <field name="fb_admins" type="tlongs"/>
+  <field name="fb_app_id" type="tlongs"/>
+  <field name="fb_pages" type="tlongs"/>
+  <field name="foundation_build_id" type="strings"/>
+  <field name="gblc" type="tlongs"/>
+  <field name="genre" type="strings"/>
+  <field name="geo" type="strings"/>
+  <field name="geo_lat" type="tdoubles"/>
+  <field name="geo_long" type="tdoubles"/>
+  <field name="geo_placename" type="strings"/>
+  <field name="geo_position" type="strings"/>
+  <field name="geo_region" type="strings"/>
+  <field name="google_site_verification" type="strings"/>
+  <field name="googlebot" type="strings"/>
+  <field name="hdl" type="strings"/>
+  <field name="hdl_p" type="strings"/>
+  <field name="hdr_img" type="strings"/>
+  <field name="headline" type="strings"/>
+  <field name="homepage_template_version" type="tlongs"/>
+  <field name="icbm" type="strings"/>
+  <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+  <field name="ifs_url" type="strings"/>
+  <field name="imagetoolbar" type="strings"/>
+  <field name="interactivegraphic_height_300" type="tlongs"/>
+  <field name="isfulltext" type="tlongs"/>
+  <field name="isshorttext" type="tlongs"/>
+  <field name="keywords" type="strings"/>
+  <field name="language" type="strings"/>
+  <field name="live_stream_endpoint" type="strings"/>
+  <field name="lp" type="strings"/>
+  <field name="media_template_version" type="tlongs"/>
+  <field name="medium" type="strings"/>
+  <field name="mid" type="tlongs"/>
+  <field name="mobile_web_app_capable" type="strings"/>
+  <field name="msapplication_starturl" type="strings"/>
+  <field name="msapplication_task" type="strings"/>
+  <field name="msapplication_tilecolor" type="strings"/>
+  <field name="msapplication_tileimage" type="strings"/>
+  <field name="msapplication_tooltip" type="strings"/>
+  <field name="msapplication_window" type="strings"/>
+  <field name="msnbot" type="strings"/>
+  <field name="news_keywords" type="strings"/>
+  <field name="nyt_best_sellers_page_type" type="strings"/>
+  <field name="nyt_collection_display_name" type="strings"/>
+  <field name="nyt_collection_identifier" type="strings"/>
+  <field name="nyt_collection_promotional_image" type="strings"/>
+  <field name="nyt_collection_tagline" type="strings"/>
+  <field name="nyt_collection_tone" type="strings"/>
+  <field name="nyt_collection_type" type="strings"/>
+  <field name="nyt_collection_uri" type="strings"/>
+  <field name="nyt_collection_url" type="strings"/>
+  <field name="og_article_author" type="strings"/>
+  <field name="og_article_section" type="strings"/>
+  <field name="og_description" type="strings"/>
+  <field name="og_image" type="strings"/>
+  <field name="og_image_height" type="tlongs"/>
+  <field name="og_image_width" type="tlongs"/>
+  <field name="og_locale" type="strings"/>
+  <field name="og_site_name" type="strings"/>
+  <field name="og_title" type="strings"/>
+  <field name="og_type" type="strings"/>
+  <field name="og_url" type="strings"/>
+  <field name="org" type="strings"/>
+  <field name="originalpublicationdate" type="strings"/>
+  <field name="p_domain_verify" type="strings"/>
+  <field name="pageRankFile" type="external" indexed="false" stored="false"/>
+  <field name="pagetype" type="strings"/>
+  <field name="pdate" type="tlongs"/>
+  <field name="pdfurl" type="strings"/>
+  <field name="per" type="strings"/>
+  <field name="pragma" type="strings"/>
+  <field name="property" type="strings"/>
+  <field name="pssst" type="strings"/>
+  <field name="psst" type="strings"/>
+  <field name="pst" type="strings"/>
+  <field name="pt" type="strings"/>
+  <field name="ptime" type="tlongs"/>
+  <field name="publish_url" type="strings"/>
+  <field name="pud" type="tlongs"/>
+  <field name="puv" type="strings"/>
+  <field name="rating" type="strings"/>
+  <field name="realestate_new_listing" type="tlongs"/>
+  <field name="realestate_openhouse_listing" type="tlongs"/>
+  <field name="realestate_reduced_price_listing" type="tlongs"/>
+  <field name="realestate_search_location_borough" type="strings"/>
+  <field name="realestate_search_location_city" type="strings"/>
+  <field name="realestate_search_location_country" type="strings"/>
+  <field name="realestate_search_location_county" type="strings"/>
+  <field name="realestate_search_location_neighborhood" type="strings"/>
+  <field name="realestate_search_location_state" type="strings"/>
+  <field name="realestate_unit_address" type="strings"/>
+  <field name="realestate_unit_bathrooms" type="tlongs"/>
+  <field name="realestate_unit_bedrooms" type="tlongs"/>
+  <field name="realestate_unit_borough" type="strings"/>
+  <field name="realestate_unit_channel" type="strings"/>
+  <field name="realestate_unit_city" type="strings"/>
+  <field name="realestate_unit_id" type="strings"/>
+  <field name="realestate_unit_neighborhood" type="strings"/>
+  <field name="realestate_unit_openhouse_date" type="strings"/>
+  <field name="realestate_unit_price" type="strings"/>
+  <field name="realestate_unit_seo_location" type="strings"/>
+  <field name="realestate_unit_size" type="tlongs"/>
+  <field name="realestate_unit_state" type="strings"/>
+  <field name="realestate_unit_type" type="strings"/>
+  <field name="realestate_unit_url" type="strings"/>
+  <field name="realestate_unit_zipcode" type="tlongs"/>
+  <field name="refresh" type="strings"/>
+  <field name="reskey" type="strings"/>
+  <field name="resourcename" type="strings"/>
+  <field name="response_id" type="tlongs"/>
+  <field name="rnews_creator" type="strings"/>
+  <field name="rnews_datepublished" type="strings"/>
+  <field name="rnews_description" type="strings"/>
+  <field name="rnews_headline" type="strings"/>
+  <field name="rnews_thumbnailurl" type="strings"/>
+  <field name="robots" type="strings"/>
+  <field name="scg" type="strings"/>
+  <field name="section" type="strings"/>
+  <field name="sectionfront_jsonp" type="strings"/>
+  <field name="ser" type="strings"/>
+  <field name="simple_reach_pid" type="strings"/>
+  <field name="slug" type="strings"/>
+  <field name="sourceapp" type="strings"/>
+  <field name="stream_content_type" type="strings"/>
+  <field name="stream_size" type="tlongs"/>
+  <field name="theme_color" type="strings"/>
+  <field name="thumbnail" type="strings"/>
+  <field name="thumbnail_150" type="strings"/>
+  <field name="thumbnail_150_height" type="tlongs"/>
+  <field name="thumbnail_150_width" type="tlongs"/>
+  <field name="thumbnail_75" type="strings"/>
+  <field name="thumbnail_75_height" type="tlongs"/>
+  <field name="thumbnail_75_width" type="tlongs"/>
+  <field name="thumbnail_height" type="tlongs"/>
+  <field name="thumbnail_url" type="strings"/>
+  <field name="thumbnail_width" type="tlongs"/>
+  <field name="ticker" type="strings"/>
+  <field name="timespeople" type="strings"/>
+  <field name="title" type="strings"/>
+  <field name="tom" type="strings"/>
+  <field name="tone" type="strings"/>
+  <field name="ttl" type="strings"/>
+  <field name="twitter_app_id_googleplay" type="strings"/>
+  <field name="twitter_app_name_googleplay" type="strings"/>
+  <field name="twitter_app_url_googleplay" type="strings"/>
+  <field name="twitter_card" type="strings"/>
+  <field name="twitter_creator" type="strings"/>
+  <field name="twitter_description" type="strings"/>
+  <field name="twitter_domain" type="strings"/>
+  <field name="twitter_image" type="strings"/>
+  <field name="twitter_image_alt" type="strings"/>
+  <field name="twitter_image_height" type="tlongs"/>
+  <field name="twitter_image_src" type="strings"/>
+  <field name="twitter_image_width" type="tlongs"/>
+  <field name="twitter_player" type="strings"/>
+  <field name="twitter_player_height" type="tlongs"/>
+  <field name="twitter_player_width" type="tlongs"/>
+  <field name="twitter_site" type="strings"/>
+  <field name="twitter_title" type="strings"/>
+  <field name="twitter_url" type="strings"/>
+  <field name="ukfs_url" type="strings"/>
+  <field name="url_thumb" type="strings"/>
+  <field name="url_thumb_wide" type="strings"/>
+  <field name="usageterms" type="strings"/>
+  <field name="utime" type="tlongs"/>
+  <field name="version_css" type="strings"/>
+  <field name="version_js" type="strings"/>
+  <field name="video_nosharetoolsplayerid" type="tlongs"/>
+  <field name="video_playerid" type="tlongs"/>
+  <field name="video_publisherid" type="tlongs"/>
+  <field name="video_publisherreadtoken" type="strings"/>
+  <field name="viewport" type="strings"/>
+  <field name="wordcount" type="tlongs"/>
+  <field name="x_audience" type="strings"/>
+  <field name="x_country" type="strings"/>
+  <field name="x_parsed_by" type="strings"/>
+  <field name="x_ua_compatible" type="strings"/>
+  <field name="xlarge" type="strings"/>
+  <field name="xlarge_height" type="tlongs"/>
+  <field name="xlarge_width" type="tlongs"/>
+  <copyField source="*" dest="_text_"/>
+</schema>
